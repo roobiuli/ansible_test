@@ -6,18 +6,43 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 
+######### MUST EDIT VARIABLES HERE #############
+
+##### VARIABLES for ANSIBLE SERVER HERE ####
+  
+$FQDN_SERVER = "ansibleserv.swiftio.tech"
+$HOSTNAME_SERVER = "ansibleserv"
+$ANSIBLE_ROLE_ = "localhost" # This is the role which will be added in /etc/ansible/hosts ; EX: localhost or centos or webserver 
+$SERVER_PRIVATE_NET_IP = "192.168.1.1"
+
+############################################
+
+$FQDN_NODE1 = "centos.swiftio.tech"
+$HOSTNAME_NODE1 = "centos"
+$ANSIBLE_ROLE_NODE1 = "" # This is the role which will be added in /etc/ansible/hosts ; EX: localhost or centos or webserver 
+$NODE1_PRIVATE_NET_IP = "192.168.1.2"
+
+
+
+################################################
+
+
+
+
 
 $script = <<EOF
   
   Install_ans () {
     apt-get update ; apt-get install ansible -y 
     
-    echo 'centos.test.com  192.168.1.2' >> /etc/hosts
+    echo 'centos 192.168.1.2' >> /etc/hosts
     echo '[centos]' >> /etc/ansible/hosts
     echo 'centos.test.com' >> /etc/ansible/hosts
-  }
+    }
 
-  add_usr (){
+
+
+  add_usr () {
     useradd -m -p 'swordfish' ansible
   }
 
@@ -29,6 +54,7 @@ $script = <<EOF
     add_usr
   else
     add_usr
+
   fi
 
 
